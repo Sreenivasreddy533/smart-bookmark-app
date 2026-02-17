@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌈 Animated Gradient Background */
+body {
+  min-height: 100vh;
+  background: linear-gradient(
+    -45deg,
+    #1e3a8a,
+    #7c3aed,
+    #db2777,
+    #f59e0b
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+/* 🎆 Floating Glow Circles */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(150px);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+body::before {
+  background: #ec4899;
+  top: -150px;
+  left: -150px;
+  animation: float1 20s infinite alternate ease-in-out;
+}
+
+body::after {
+  background: #3b82f6;
+  bottom: -150px;
+  right: -150px;
+  animation: float2 25s infinite alternate ease-in-out;
+}
+
+/* 🌊 Animations */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float1 {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(100px); }
+}
+
+@keyframes float2 {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-120px); }
+}
+
+/* ✨ Glass Effect Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.3);
+}
+
+/* 🌟 Animated Button */
+.animated-btn {
+  background: linear-gradient(90deg, #ec4899, #8b5cf6, #3b82f6);
+  background-size: 200%;
+  transition: all 0.4s ease;
+  color: white;
+  font-weight: bold;
+}
+
+.animated-btn:hover {
+  background-position: right center;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #8b5cf6;
+}
+.glass {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+}
+input, textarea {
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 10px 14px;
+  border-radius: 12px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #555;
+}
