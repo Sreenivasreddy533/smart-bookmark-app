@@ -1,36 +1,228 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Smart Bookmark App
 
-## Getting Started
+A full-stack bookmark manager built with Next.js (App Router) and Supabase, featuring Google OAuth authentication, private user data, real-time updates, and production deployment on Vercel.
 
-First, run the development server:
+🚀 Live Demo
 
-```bash
+Live URL:
+https://your-vercel-app-url.vercel.app
+
+GitHub Repository:
+https://github.com/Sreenivasreddy533/smart-bookmark-app
+
+📌 Features
+✅ Authentication
+
+Sign up and log in using Google OAuth only
+
+No email/password authentication
+
+Secure session handling using Supabase Auth
+
+✅ Bookmark Management
+
+Add a bookmark (URL + title)
+
+Delete your own bookmarks
+
+Each bookmark is linked to the authenticated user
+
+✅ Privacy
+
+Bookmarks are private per user
+
+User A cannot see User B’s bookmarks
+
+Implemented using user_id filtering in queries
+
+✅ Real-Time Updates
+
+Bookmark list updates instantly without page refresh
+
+Works across multiple tabs
+
+Implemented using Supabase Realtime subscriptions
+
+✅ Deployment
+
+Fully deployed on Vercel
+
+Production environment variables configured
+
+Google OAuth works in both local and production environments
+
+🛠 Tech Stack
+
+Frontend: Next.js (App Router)
+
+Backend: Supabase (Auth, Database, Realtime)
+
+Styling: Tailwind CSS
+
+Deployment: Vercel
+
+🗂 Project Structure
+src/
+ ├── app/
+ │   ├── page.tsx
+ │   ├── dashboard/page.tsx
+ │   └── auth/callback/route.ts
+ ├── components/
+ │   ├── BookmarkForm.tsx
+ │   ├── BookmarkList.tsx
+ │   └── LoginButton.tsx
+ └── lib/
+     └── supabase.ts
+
+🔐 Database Design
+
+Table: bookmarks
+
+Column	Type
+id	uuid
+title	text
+url	text
+user_id	uuid
+created_at	timestamp
+
+Each bookmark is linked to the authenticated user's user_id.
+
+⚙️ Environment Variables
+
+The following environment variables are required:
+
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+
+These are configured in:
+
+.env.local (for development)
+
+Vercel Project Settings (for production)
+
+🧪 How to Run Locally
+
+Clone the repository:
+
+git clone https://github.com/Sreenivasreddy533/smart-bookmark-app.git
+
+
+Install dependencies:
+
+npm install
+
+
+Add environment variables in .env.local
+
+Run the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+http://localhost:3000
 
-## Learn More
+🧠 Problems Faced & Solutions
+1️⃣ Path Alias Build Failure on Vercel
 
-To learn more about Next.js, take a look at the following resources:
+Problem:
+Module not found: Can't resolve '@/lib/supabase'
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Solution:
+Configured tsconfig.json with:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+"baseUrl": ".",
+"paths": {
+  "@/*": ["src/*"]
+}
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Committed and redeployed.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2️⃣ Windows Environment Variable Issue
+
+Problem:
+NEXT_DISABLE_TURBOPACK is not recognized
+
+Solution:
+Removed Linux-style environment variable from package.json and used:
+
+"dev": "next dev"
+
+3️⃣ Missing Dependencies on Vercel
+
+Problem:
+Module not found: react-tsparticles
+
+Cause:
+Dependencies were installed locally but not committed.
+
+Solution:
+Installed dependencies properly and committed package.json + package-lock.json.
+
+4️⃣ Google OAuth Redirect Issues
+
+Problem:
+Login failed after production deployment.
+
+Solution:
+Updated:
+
+Supabase → Site URL & Redirect URLs
+
+Google Cloud Console → Authorized redirect URIs
+
+🔎 Real-Time Implementation Explanation
+
+The app subscribes to Supabase's real-time channel:
+
+When a new bookmark is inserted
+
+When a bookmark is deleted
+
+The UI updates automatically without refresh.
+
+🎯 What This Project Demonstrates
+
+Full-stack authentication with OAuth
+
+Secure per-user data handling
+
+Real-time database subscriptions
+
+Production-ready deployment
+
+Debugging and resolving deployment issues
+
+Environment configuration management
+
+📅 Time Taken
+
+Completed within the 72-hour time limit.
+
+💡 Future Improvements
+
+Edit bookmark feature
+
+Search & filtering
+
+Pagination
+
+Improved UI animations
+
+Row Level Security enforcement at database level
+
+Custom domain setup
+
+✅ Submission Checklist
+
+✔ Google OAuth login
+✔ Add bookmark
+✔ Delete bookmark
+✔ Private per-user data
+✔ Real-time updates
+✔ Deployed on Vercel
+✔ GitHub repository
+✔ README with problems & solutions
