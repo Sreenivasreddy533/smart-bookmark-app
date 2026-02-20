@@ -5,7 +5,7 @@ A full-stack bookmark manager built with Next.js (App Router) and Supabase, feat
 🚀 Live Demo
 
 Live URL:
-https://your-vercel-app-url.vercel.app
+http://smart-bookmark-app-silk-two.vercel.app/
 
 GitHub Repository:
 https://github.com/Sreenivasreddy533/smart-bookmark-app
